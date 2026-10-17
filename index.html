@@ -165,9 +165,26 @@
         .order("full_name", {ascending:true});
       if (error) throw error;
       guests = data || [];
-      guestbookMessages = guests.flatMap(guest => (guest.guestbook_messages || [])
-        .map(message => ({...message, author: guest.full_name || "Invité"})))
-        .sort((a,b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+
+      // Charger le livre d'or séparément évite de dépendre de la relation imbriquée
+      // guests -> guestbook_messages, qui peut renvoyer un tableau vide selon le schéma exposé.
+      const guestIds = guests.map(guest => guest.id);
+      if (guestIds.length) {
+        const {data: messages, error: messagesError} = await supabaseClient
+          .from("guestbook_messages")
+          .select("guest_id,message,is_published,created_at")
+          .in("guest_id", guestIds)
+          .order("created_at", {ascending:false});
+        if (messagesError) throw messagesError;
+        const guestNames = new Map(guests.map(guest => [guest.id, guest.full_name || "Invité"]));
+        guestbookMessages = (messages || []).map(message => ({
+          ...message,
+          author: guestNames.get(message.guest_id) || "Invité"
+        }));
+      } else {
+        guestbookMessages = [];
+      }
+
       renderStats();
       renderGuestbook();
       $("loadMessage").textContent = "Données mises à jour depuis votre espace sécurisé.";
@@ -179,7 +196,7 @@
         try { await loadDashboard(); }
         catch (error) {
           console.error(error);
-          $("loadMessage").textContent = "Impossible de charger les données. Vérifiez les politiques RLS et les relations Supabase, puis réessayez.";
+          $("loadMessage").textContent = "Erreur de chargement : " + (error?.message || "erreur inconnue") + ". Rechargez la page ou contactez Hope Collection.";
         }
       }
     }
