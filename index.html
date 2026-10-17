@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f5f0">
-  <title>Espace client | Hope Collection</title>
+  <title>Mon espace mariage</title>
   <style>
     :root{--ink:#24251f;--muted:#74766d;--paper:#f7f5f0;--card:#fff;--line:#e9e5db;--gold:#a8834f;--green:#2d6a4f;--red:#a63d40;--shadow:0 12px 35px rgba(34,32,25,.06)}
     *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}
@@ -13,35 +13,35 @@
     .button{border:0;border-radius:10px;background:var(--ink);color:#fff;padding:12px 17px}.button.secondary{background:#f0ece3;color:var(--ink)}.button:disabled{opacity:.6;cursor:wait}
     .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:24px}.stat,.panel,.login-card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.stat{padding:21px}.stat-label{color:var(--muted);font-size:13px}.stat-number{font-size:34px;line-height:1.2;margin-top:12px;font-weight:600}.stat-note{font-size:12px;color:var(--muted);margin-top:8px}.panel{padding:22px;margin-top:20px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.panel h2{font-family:Georgia,serif;font-weight:400;font-size:25px;margin:0}.tools{display:flex;gap:10px;flex-wrap:wrap}.field{border:1px solid var(--line);background:#fff;border-radius:9px;padding:11px 12px;min-width:190px;outline-color:var(--gold)}
     .table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600;padding:12px;border-bottom:1px solid var(--line)}td{padding:15px 12px;border-bottom:1px solid #f0ede7;font-size:14px}tbody tr:last-child td{border-bottom:0}.pill{display:inline-flex;align-items:center;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:600}.pill.present{background:#e7f3ec;color:var(--green)}.pill.absent{background:#f9e9e8;color:var(--red)}.pill.pending{background:#f3efe5;color:#8b6a31}.muted{color:var(--muted)}.empty{padding:28px;text-align:center;color:var(--muted)}.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}.drink-row{display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}.drink-row:last-child{border-bottom:0}.bar{height:7px;background:#f0ede7;border-radius:8px;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;background:var(--gold);border-radius:8px}.hidden{display:none!important}
-    .login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{width:min(440px,100%);padding:32px}.login-card h1{font-family:Georgia,serif;font-weight:400;font-size:34px;margin:12px 0}.login-card p{color:var(--muted);line-height:1.6}.form-group{margin:20px 0}.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:8px}.form-group input{width:100%;padding:13px;border:1px solid var(--line);border-radius:9px;background:#fff}.login-card .button{width:100%;margin-top:8px}.notice{font-size:13px;line-height:1.5;margin-top:14px;color:var(--red)}.footer{color:var(--muted);font-size:12px;text-align:center;padding:25px 0}.statusline{font-size:13px;color:var(--muted);margin-top:12px}
+    .login-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at top,#f0e6d5 0,transparent 48%),var(--paper)}.login-card{width:min(440px,100%);padding:36px}.monogram{width:58px;height:58px;display:grid;place-items:center;border:1px solid #d8c29f;border-radius:50%;font-size:31px;color:var(--gold);font-family:Georgia,serif}.client-brand{display:flex;align-items:center;gap:12px}.client-brand-mark{width:42px;height:42px;border:1px solid #d8c29f;border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:24px}.client-brand-title{font-family:Georgia,serif;font-size:21px}.login-card h1{font-family:Georgia,serif;font-weight:400;font-size:34px;margin:12px 0}.login-card p{color:var(--muted);line-height:1.6}.form-group{margin:20px 0}.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:8px}.form-group input{width:100%;padding:13px;border:1px solid var(--line);border-radius:9px;background:#fff}.login-card .button{width:100%;margin-top:8px}.notice{font-size:13px;line-height:1.5;margin-top:14px;color:var(--red)}.footer{color:var(--muted);font-size:12px;text-align:center;padding:25px 0}.statusline{font-size:13px;color:var(--muted);margin-top:12px}
     @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}}@media(max-width:520px){.wrap{width:min(100% - 22px,1180px)}.grid{gap:10px}.stat{padding:15px}.stat-number{font-size:29px}.panel{padding:15px}.panel-head{align-items:flex-start;flex-direction:column}.field{min-width:0;width:100%}.tools{width:100%}.tools>*{flex:1}.topbar{padding:17px 0}.brand{font-size:20px}}
   </style>
 </head>
 <body>
   <section id="loginScreen" class="login-screen">
     <div class="login-card">
-      <div class="brand">HOPE <span>COLLECTION</span></div>
-      <div class="eyebrow" style="margin-top:28px">Espace privé</div>
-      <h1>Heureux de vous revoir.</h1>
-      <p>Connectez-vous pour consulter les réponses de vos invités et préparer votre grand jour.</p>
+      <div class="monogram" aria-hidden="true">♡</div>
+      <div class="eyebrow" style="margin-top:22px">Espace privé des mariés</div>
+      <h1>Votre mariage, votre espace.</h1>
+      <p>Retrouvez ici les réponses de vos invités, leurs préférences et les informations utiles pour préparer votre grand jour.</p>
       <form id="loginForm">
         <div class="form-group"><label for="email">Adresse e-mail</label><input id="email" type="email" autocomplete="username" placeholder="vous@exemple.com" required></div>
         <div class="form-group"><label for="password">Mot de passe</label><input id="password" type="password" autocomplete="current-password" placeholder="Votre mot de passe" required></div>
         <button id="loginButton" class="button" type="submit">Se connecter</button>
         <div id="loginMessage" class="notice" role="alert"></div>
       </form>
-      <div class="statusline">Accès réservé aux clients de Hope Collection.</div>
+      <div class="statusline">Connexion sécurisée · Accès personnel</div>
     </div>
   </section>
 
   <div id="dashboard" class="hidden">
     <header class="wrap topbar">
-      <div class="brand">HOPE <span>COLLECTION</span><div class="eyebrow" style="margin-top:5px">Espace client</div></div>
+      <div class="client-brand"><span class="client-brand-mark" aria-hidden="true">♡</span><div><div class="client-brand-title">Mon espace mariage</div><div class="eyebrow" style="margin-top:5px">Votre tableau de bord privé</div></div></div>
       <button id="logoutButton" class="button secondary" type="button">Se déconnecter</button>
     </header>
     <main class="wrap">
       <section class="hero">
-        <div><div class="eyebrow">Votre mariage, en un coup d'œil</div><h1 id="coupleNames">Votre tableau de bord</h1><p>Suivez les confirmations de présence et les préférences de vos invités.</p></div>
+        <div><div class="eyebrow">Bienvenue dans votre espace</div><h1 id="coupleNames">Votre tableau de bord</h1><p>Suivez les confirmations de présence et les préférences de vos invités.</p></div>
         <div id="weddingDate" class="date"></div>
       </section>
       <div id="loadMessage" class="statusline" role="status"></div>
@@ -60,7 +60,7 @@
         <article class="panel"><div class="panel-head"><h2>Préférences de boissons</h2></div><div id="drinkSummary" class="muted">Les choix apparaîtront lorsque les invités auront répondu.</div></article>
         <article class="panel"><div class="panel-head"><h2>À propos de vos données</h2></div><p class="muted" style="line-height:1.7;margin:0">Cet espace est en consultation seule. Les réponses affichées proviennent de votre invitation. Vous ne pouvez pas modifier les réponses depuis ce tableau de bord.</p></article>
       </section>
-      <footer class="footer">Hope Collection · Un jour unique, des souvenirs précieux.</footer>
+      <footer class="footer">Un espace privé pensé pour accompagner votre grand jour.</footer>
     </main>
   </div>
 
