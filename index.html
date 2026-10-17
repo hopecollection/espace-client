@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <title>Espace client | Hope Collection</title>
+  <style>
+    :root{--ink:#24251f;--muted:#74766d;--paper:#f7f5f0;--card:#fff;--line:#e9e5db;--gold:#a8834f;--green:#2d6a4f;--red:#a63d40;--shadow:0 12px 35px rgba(34,32,25,.06)}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}.topbar{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);gap:16px}.brand{font-family:Georgia,serif;font-size:23px;letter-spacing:.3px}.brand span{color:var(--gold)}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted)}
+    main{padding:36px 0 60px}.hero{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}.hero h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(32px,5vw,48px);margin:8px 0}.hero p{color:var(--muted);margin:0;line-height:1.6}.date{color:var(--gold);font-size:14px}
+    .button{border:0;border-radius:10px;background:var(--ink);color:#fff;padding:12px 17px}.button.secondary{background:#f0ece3;color:var(--ink)}.button:disabled{opacity:.6;cursor:wait}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:24px}.stat,.panel,.login-card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.stat{padding:21px}.stat-label{color:var(--muted);font-size:13px}.stat-number{font-size:34px;line-height:1.2;margin-top:12px;font-weight:600}.stat-note{font-size:12px;color:var(--muted);margin-top:8px}.panel{padding:22px;margin-top:20px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.panel h2{font-family:Georgia,serif;font-weight:400;font-size:25px;margin:0}.tools{display:flex;gap:10px;flex-wrap:wrap}.field{border:1px solid var(--line);background:#fff;border-radius:9px;padding:11px 12px;min-width:190px;outline-color:var(--gold)}
+    .table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600;padding:12px;border-bottom:1px solid var(--line)}td{padding:15px 12px;border-bottom:1px solid #f0ede7;font-size:14px}tbody tr:last-child td{border-bottom:0}.pill{display:inline-flex;align-items:center;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:600}.pill.present{background:#e7f3ec;color:var(--green)}.pill.absent{background:#f9e9e8;color:var(--red)}.pill.pending{background:#f3efe5;color:#8b6a31}.muted{color:var(--muted)}.empty{padding:28px;text-align:center;color:var(--muted)}.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}.drink-row{display:flex;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}.drink-row:last-child{border-bottom:0}.bar{height:7px;background:#f0ede7;border-radius:8px;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;background:var(--gold);border-radius:8px}.hidden{display:none!important}
+    .login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{width:min(440px,100%);padding:32px}.login-card h1{font-family:Georgia,serif;font-weight:400;font-size:34px;margin:12px 0}.login-card p{color:var(--muted);line-height:1.6}.form-group{margin:20px 0}.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:8px}.form-group input{width:100%;padding:13px;border:1px solid var(--line);border-radius:9px;background:#fff}.login-card .button{width:100%;margin-top:8px}.notice{font-size:13px;line-height:1.5;margin-top:14px;color:var(--red)}.footer{color:var(--muted);font-size:12px;text-align:center;padding:25px 0}.statusline{font-size:13px;color:var(--muted);margin-top:12px}
+    @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.split{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}}@media(max-width:520px){.wrap{width:min(100% - 22px,1180px)}.grid{gap:10px}.stat{padding:15px}.stat-number{font-size:29px}.panel{padding:15px}.panel-head{align-items:flex-start;flex-direction:column}.field{min-width:0;width:100%}.tools{width:100%}.tools>*{flex:1}.topbar{padding:17px 0}.brand{font-size:20px}}
+  </style>
+</head>
+<body>
+  <section id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="brand">HOPE <span>COLLECTION</span></div>
+      <div class="eyebrow" style="margin-top:28px">Espace privé</div>
+      <h1>Heureux de vous revoir.</h1>
+      <p>Connectez-vous pour consulter les réponses de vos invités et préparer votre grand jour.</p>
+      <form id="loginForm">
+        <div class="form-group"><label for="email">Adresse e-mail</label><input id="email" type="email" autocomplete="username" placeholder="vous@exemple.com" required></div>
+        <div class="form-group"><label for="password">Mot de passe</label><input id="password" type="password" autocomplete="current-password" placeholder="Votre mot de passe" required></div>
+        <button id="loginButton" class="button" type="submit">Se connecter</button>
+        <div id="loginMessage" class="notice" role="alert"></div>
+      </form>
+      <div class="statusline">Accès réservé aux clients de Hope Collection.</div>
+    </div>
+  </section>
+
+  <div id="dashboard" class="hidden">
+    <header class="wrap topbar">
+      <div class="brand">HOPE <span>COLLECTION</span><div class="eyebrow" style="margin-top:5px">Espace client</div></div>
+      <button id="logoutButton" class="button secondary" type="button">Se déconnecter</button>
+    </header>
+    <main class="wrap">
+      <section class="hero">
+        <div><div class="eyebrow">Votre mariage, en un coup d'œil</div><h1 id="coupleNames">Votre tableau de bord</h1><p>Suivez les confirmations de présence et les préférences de vos invités.</p></div>
+        <div id="weddingDate" class="date"></div>
+      </section>
+      <div id="loadMessage" class="statusline" role="status"></div>
+      <section class="grid" aria-label="Statistiques des invités">
+        <article class="stat"><div class="stat-label">Invités enregistrés</div><div id="totalGuests" class="stat-number">—</div><div class="stat-note">Personnes invitées</div></article>
+        <article class="stat"><div class="stat-label">Présence confirmée</div><div id="presentCount" class="stat-number">—</div><div class="stat-note">Invités ayant répondu oui</div></article>
+        <article class="stat"><div class="stat-label">Absents</div><div id="absentCount" class="stat-number">—</div><div class="stat-note">Invités ayant répondu non</div></article>
+        <article class="stat"><div class="stat-label">En attente</div><div id="pendingCount" class="stat-number">—</div><div class="stat-note">Sans réponse enregistrée</div></article>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h2>Liste des invités</h2><div class="tools"><input id="searchInput" class="field" type="search" placeholder="Rechercher un invité…" aria-label="Rechercher un invité"><select id="statusFilter" class="field" aria-label="Filtrer par réponse"><option value="all">Toutes les réponses</option><option value="present">Présence confirmée</option><option value="absent">Absents</option><option value="pending">En attente</option></select></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Nom</th><th>Table</th><th>Personnes autorisées</th><th>Réponse</th><th>Nombre annoncé</th><th>Boisson</th></tr></thead><tbody id="guestRows"><tr><td colspan="6" class="empty">Connectez-vous pour charger vos invités.</td></tr></tbody></table></div>
+        <div id="guestCountNote" class="statusline"></div>
+      </section>
+      <section class="split">
+        <article class="panel"><div class="panel-head"><h2>Préférences de boissons</h2></div><div id="drinkSummary" class="muted">Les choix apparaîtront lorsque les invités auront répondu.</div></article>
+        <article class="panel"><div class="panel-head"><h2>À propos de vos données</h2></div><p class="muted" style="line-height:1.7;margin:0">Cet espace est en consultation seule. Les réponses affichées proviennent de votre invitation. Vous ne pouvez pas modifier les réponses depuis ce tableau de bord.</p></article>
+      </section>
+      <footer class="footer">Hope Collection · Un jour unique, des souvenirs précieux.</footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // La clé publishable est conçue pour être utilisée dans le navigateur.
+    // La sécurité des données repose sur les politiques RLS de Supabase.
+    const SUPABASE_URL = "https://jxldnyoayvhxjwfkjens.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_qGHcuSmy3gsz4kKInkHdzw_wyJTSC08";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    let guests = [];
+
+    const $ = (id) => document.getElementById(id);
+    const safe = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const statusFor = (guest) => {
+      const rsvp = Array.isArray(guest.rsvps) ? guest.rsvps[0] : guest.rsvps;
+      if (!rsvp || !rsvp.attendance) return {key:"pending",label:"En attente",rsvp:null};
+      const value = String(rsvp.attendance).toLowerCase();
+      if (["present","présent","oui","attending"].includes(value)) return {key:"present",label:"Présence confirmée",rsvp};
+      if (["absent","non","declined","not_attending"].includes(value)) return {key:"absent",label:"Absent",rsvp};
+      return {key:"pending",label:"En attente",rsvp};
+    };
+    const drinkLabel = (value) => {
+      if (!value) return "Non renseignée";
+      const map = {jus:"Jus",eau:"Eau",vin:"Vin",champagne:"Champagne",autre:"Autre",water:"Eau",juice:"Jus"};
+      return map[String(value).toLowerCase()] || String(value).replace(/_/g," ");
+    };
+    const dateLabel = (value) => {
+      if (!value) return "";
+      const date = new Date(value + (String(value).length === 10 ? "T12:00:00" : ""));
+      return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat("fr-FR",{day:"numeric",month:"long",year:"numeric"}).format(date);
+    };
+    function renderGuests() {
+      const term = $("searchInput").value.trim().toLocaleLowerCase("fr");
+      const filter = $("statusFilter").value;
+      const filtered = guests.filter(g => {
+        const status = statusFor(g);
+        return (!term || String(g.full_name || "").toLocaleLowerCase("fr").includes(term)) && (filter === "all" || status.key === filter);
+      });
+      $("guestRows").innerHTML = filtered.length ? filtered.map(g => {
+        const s = statusFor(g), r = s.rsvp;
+        return `<tr><td><strong>${safe(g.full_name || "Nom non renseigné")}</strong></td><td>${safe(g.table_number || "Non attribuée")}</td><td>${safe(g.allowed_guests ?? 1)}</td><td><span class="pill ${s.key}">${s.label}</span></td><td>${r && r.guest_count != null ? safe(r.guest_count) : "—"}</td><td>${safe(r ? drinkLabel(r.drink_choice) : "—")}</td></tr>`;
+      }).join("") : '<tr><td colspan="6" class="empty">Aucun invité ne correspond à cette recherche.</td></tr>';
+      $("guestCountNote").textContent = filtered.length + " invité(s) affiché(s) sur " + guests.length + ".";
+    }
+    function renderStats() {
+      let present=0, absent=0, pending=0;
+      const drinks = {};
+      guests.forEach(g => {
+        const s = statusFor(g);
+        if (s.key === "present") present++;
+        else if (s.key === "absent") absent++;
+        else pending++;
+        if (s.rsvp && s.rsvp.drink_choice) {
+          const label = drinkLabel(s.rsvp.drink_choice);
+          drinks[label] = (drinks[label] || 0) + 1;
+        }
+      });
+      $("totalGuests").textContent = guests.length;
+      $("presentCount").textContent = present;
+      $("absentCount").textContent = absent;
+      $("pendingCount").textContent = pending;
+      const drinkEntries = Object.entries(drinks).sort((a,b)=>b[1]-a[1]);
+      const max = Math.max(1,...drinkEntries.map(x=>x[1]));
+      $("drinkSummary").innerHTML = drinkEntries.length ? drinkEntries.map(([label,count]) => `<div class="drink-row"><div style="flex:1"><div>${safe(label)}</div><div class="bar"><span style="width:${count/max*100}%"></span></div></div><strong>${count}</strong></div>`).join("") : "Aucun choix de boisson enregistré pour le moment.";
+      renderGuests();
+    }
+    async function loadDashboard() {
+      $("loadMessage").textContent = "Chargement de vos données…";
+      const {data: invitation, error: invitationError} = await supabaseClient
+        .from("invitations")
+        .select("id,couple_names,wedding_date,invitations_purchased")
+        .maybeSingle();
+      if (invitationError) throw invitationError;
+      if (!invitation) {
+        $("coupleNames").textContent = "Aucun mariage associé";
+        $("loadMessage").textContent = "Aucune invitation n'est associée à ce compte. Contactez Hope Collection.";
+        guests = [];
+        renderStats();
+        return;
+      }
+      $("coupleNames").textContent = invitation.couple_names || "Votre mariage";
+      $("weddingDate").textContent = dateLabel(invitation.wedding_date);
+      const {data, error} = await supabaseClient
+        .from("guests")
+        .select("id,full_name,table_number,allowed_guests,rsvps(attendance,guest_count,drink_choice)")
+        .eq("invitation_id", invitation.id)
+        .order("full_name", {ascending:true});
+      if (error) throw error;
+      guests = data || [];
+      renderStats();
+      $("loadMessage").textContent = "Données mises à jour depuis votre espace sécurisé.";
+    }
+    async function showSession(session) {
+      $("loginScreen").classList.toggle("hidden", !!session);
+      $("dashboard").classList.toggle("hidden", !session);
+      if (session) {
+        try { await loadDashboard(); }
+        catch (error) {
+          console.error(error);
+          $("loadMessage").textContent = "Impossible de charger les données. Vérifiez les politiques RLS et les relations Supabase, puis réessayez.";
+        }
+      }
+    }
+    $("loginForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      $("loginMessage").textContent = "";
+      $("loginButton").disabled = true;
+      $("loginButton").textContent = "Connexion…";
+      const {data,error} = await supabaseClient.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});
+      $("loginButton").disabled = false;
+      $("loginButton").textContent = "Se connecter";
+      if (error) {
+        $("loginMessage").textContent = "Connexion impossible : vérifiez votre adresse e-mail et votre mot de passe.";
+        return;
+      }
+      await showSession(data.session);
+    });
+    $("logoutButton").addEventListener("click", async () => {
+      await supabaseClient.auth.signOut();
+      guests = [];
+      $("loginForm").reset();
+      $("loginMessage").textContent = "";
+      await showSession(null);
+    });
+    $("searchInput").addEventListener("input", renderGuests);
+    $("statusFilter").addEventListener("change", renderGuests);
+    supabaseClient.auth.getSession().then(({data}) => showSession(data.session));
+    supabaseClient.auth.onAuthStateChange((_event, session) => {
+      if (!session) {
+        $("loginScreen").classList.remove("hidden");
+        $("dashboard").classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+</html>
