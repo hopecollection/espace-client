@@ -109,12 +109,14 @@
       $("guestCountNote").textContent = filtered.length + " invité(s) affiché(s) sur " + guests.length + ".";
     }
     function renderGuestbook() {
-      const visibleMessages = guestbookMessages.filter(message => message.is_published === true);
-      $("guestbookCount").textContent = visibleMessages.length + " message(s)";
-      $("guestbookMessages").innerHTML = visibleMessages.length ? visibleMessages.map(message => {
+      $("guestbookCount").textContent = guestbookMessages.length + " message(s)";
+      $("guestbookMessages").innerHTML = guestbookMessages.length ? guestbookMessages.map(message => {
         const author = message.author || "Invité";
-        return `<article class="guestbook-entry"><div class="guestbook-author">${safe(author)}</div><div class="guestbook-date">${safe(dateLabel(message.created_at))}</div><p>${safe(message.message)}</p></article>`;
-      }).join("") : '<div class="empty">Aucun message publié dans le livre d’or pour le moment.</div>';
+        const publicationStatus = message.is_published
+          ? '<span class="pill present">Publié</span>'
+          : '<span class="pill pending">En attente de publication</span>';
+        return `<article class="guestbook-entry"><div class="guestbook-author">${safe(author)}</div><div class="guestbook-date">${safe(dateLabel(message.created_at))}</div><div style="margin-top:8px">${publicationStatus}</div><p>${safe(message.message)}</p></article>`;
+      }).join("") : '<div class="empty">Aucun message dans le livre d’or pour le moment.</div>';
     }
     function renderStats() {
       let present=0, absent=0, pending=0;
@@ -164,7 +166,6 @@
       if (error) throw error;
       guests = data || [];
       guestbookMessages = guests.flatMap(guest => (guest.guestbook_messages || [])
-        .filter(message => message.is_published === true)
         .map(message => ({...message, author: guest.full_name || "Invité"})))
         .sort((a,b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
       renderStats();
