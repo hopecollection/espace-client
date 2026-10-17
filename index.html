@@ -87,7 +87,7 @@
     };
     const drinkLabel = (value) => {
       if (!value) return "Non renseignée";
-      const map = {jus:"Jus",eau:"Eau",vin:"Vin",champagne:"Champagne",autre:"Autre",water:"Eau",juice:"Jus"};
+      const map = {sucree:"Sucrée",biere:"Bière",jus:"Sucrée",eau:"Bière",vin:"Vin",champagne:"Champagne",autre:"Autre",water:"Bière",juice:"Sucrée"};
       return map[String(value).toLowerCase()] || String(value).replace(/_/g," ");
     };
     const dateLabel = (value) => {
